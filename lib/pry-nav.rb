@@ -16,7 +16,7 @@ module PryNav
   # https://github.com/pry/pry/blob/master/lib/pry/default_commands/context.rb
   def check_file_context(target)
     file = RUBY_VERSION.to_f >= MIN_RUBY_VERSION_BINDING_SOURCE ?
-      target.source_location :
+      target.source_location.first :
       target.eval('__FILE__')
 
     file == Pry.eval_path || (file !~ /(\(.*\))|<.*>/ && file != '' && file != '-e')
